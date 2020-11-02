@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <!--    js -->
+    <script type="text/javascript" src="/js/login.js"></script>
+
+</head>
+<body>
+<div class="signUp-form " >
+    <form action="/signUpSubmit" method="post" onSubmit="return checkConfirmPasswords();">
+        <div class="avatar">
+            <img src="/img/login.png" alt="login">
+        </div>
+        <h2 class="text-center">Member Register</h2>
+<!--        First name-->
+        <div class="form-group">
+            <input type="text" class="form-control" name="firstName" placeholder="firstName" required="required">
+        </div>
+<!--        Last name-->
+        <div class="form-group">
+            <input type="text" class="form-control" name="lastName" placeholder="lastName" required="required">
+        </div>
+<!--        Password -->
+        <div class="form-group">
+            <input type="password" id = "checkPassword" class="form-control" name="password" placeholder="Password" required="required">
+        </div>
+<!--        confirmPassword-->
+        <div class="form-group">
+            <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" placeholder="confirm password" required="required">
+            <br/>
+            <label class="alertColour" id="lbl-confirm" >Passwords not consistent</label>
+        </div>
+
+<!--    Email address-->
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" name="email" id="email" required="required">
+        </div>
+
+<!--    Reset question -->
+        <div class="form-group">
+            <label id="resetQuesiton"> What was your childhood nickname?
+                <input type="text" class="form-control" placeholder="Answer" name="answer" id="answer" required="required">
+            </label>
+        </div>
+
+<!--        Reset the form -->
+        <button class="btn btn-primary btn-lg btn-block" type="reset" value="Reset">Reset</button>
+
+        <% if (!alreadySignUp) {%>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+            </div>
+        <% } %>
+
+        <% if (alreadySignUp) {%>
+            <div class="form-group">
+                <label class="alertColour">You have already signed up！ please use following links to finish your login  </label>
+            </div>
+        <% } %>
+
+
+
+    </form>
+    <p class="text-center small">Already have account? <a href="/" id = "login">Login here!</a></p>
+    <p class="text-center small">Forget your password?  <a href="/restPassword" id = "login">Resert here!</a></p>
+</div>
+
+</body>
+</html>

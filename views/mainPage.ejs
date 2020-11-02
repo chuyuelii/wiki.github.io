@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <title>COMP5347 Group11 Assignment2</title>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!--    Google graph-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<!--    Jquery-->
+    <script src="/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="/js/mainPage.js"></script>
+    <script type="text/javascript" src="/js/graph.js"></script>
+</head>
+
+<body>
+
+<!--Button for logout-->
+<div>
+
+    <form action="/logout" method="post">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Log Out</button>
+    </form>
+
+</div>
+
+<div class="jumbotron">
+<!--    Need to use cookie -->
+    <h1 class="display-4 center" >Welcome to WiKnow: <%= username %> </h1>
+
+    <hr class="my-4">
+    <p> Clicking following tags to explore the functionality: </p>
+    <div class="accordion" id="accordionExample">
+
+<!--    Function One .............................................................................................................-->
+
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Functions in Overall Analytics: (Overall Analysis)
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+<!--    The highest and smallest -->
+                    <div class="border border-secondary" id="OverallAnalysis">
+                        <h6 >1. Show me the two articles with the
+<!--                            <input type="text" name="range" id="range" value="3"/>-->
+                            <select name="selection" id="selection">
+                                <option value="-1">highest</option>
+                                <option value="1">lowest</option>
+                            </select>
+                             number of revision and its relative number of revisions
+                        </h6>
+                        <button type="button" class="btn btn-dark" id="revisionNumber" >show me</button>
+<!--                        Show the result-->
+                        <div id="revisionNumberResult"></div>
+                    </div>
+
+<!--                    The largest and shorest group of editors -->
+                    <div class="border border-secondary" id="OverallAnalysis">
+                        <h6 >2. Show me those articles edited by the
+                            <select name="top" id="edited">
+                                <option value="-1">largest</option>
+                                <option value="1">shortest</option>
+                            </select>
+                            group of registered and their group size
+                        </h6>
+                        <button type="button" class="btn btn-dark" id="editorGroup" >show me</button>
+                        <!--                        Show the result-->
+                        <div id="editedResult" ></div>
+                    </div>
+<!--                    The longest and shorest history-->
+                    <div class="border border-secondary" id="OverallAnalysis">
+                        <h6 >3. Show me those articles with the
+                            <select name="top" id="history">
+                                <option value="1">longest</option>
+                                <option value="-1">shortest</option>
+                            </select>
+                            history
+                        </h6>
+                        <button type="button" class="btn btn-dark" id="duration" >show me</button>
+                        <!--                        Show the result-->
+                        <div id="periodReturn" ></div>
+                    </div>
+
+<!--             Graph -->
+                    <div  class="border border-secondary">
+                        A bar chart of revision number distribution by year and user type： <button id="barChart" class="btn btn-dark">show me </button><br>
+                        <br>
+                        A line chart of revision number distribution by year and user type：<button id="lineChart" class="btn btn-dark">show me </button>
+                        <div class="center-block" id="myChart"></div>
+
+                    </div>
+
+                    <div  class="border border-secondary">
+                        <br>
+                        A Pie chart of revision number distribution by user type： <button id="pieChart" class="btn btn-dark">show me </button>
+                        <div  class="border border-secondary" id="pieIDText"></div>
+                        <div class="center-block" id="myPieChart"> </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+<!--        Individual Function-->
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button id = 'ButtonIndividualFunction' class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+
+                        Function show in Individual Analytics: (Individual Analysis)
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+
+
+
+                    <h5 >Select a specific period
+                    </h5>
+                    <div id="yearFilter">
+                        <label>From</label><input type = 'number' id="yearStart" onKeyDown="return false"><label>To</label><input type ='number' id="yearEnd" onKeyDown="return false">
+                        <button id = 'ButtonIndividualRefresh' type="button" class="btn btn-dark">
+                            Refresh
+                        </button>
+                    </div>
+                    <label id="tips0">Tips: To avoid large volumn of data, after using the year filter function above, you may manually reload the information by clicking Refresh</label>
+                    <br><br>
+                    <h5 >Choose a specific article
+                    </h5>
+                    <select name="individualRevisions" id="DropdownArticles">
+                        <option selected disabled hidden value="-1">Please select an article</option>
+                    </select>
+                    <br>
+                    <div id="individualRedditNews"></div>
+                    <br>
+                    <div>
+                        <label id="updateStatus"></label>
+                    </div>
+
+
+                    <div>
+                        <label>Title:   </label><label id="individualArticleTitle"></label>
+                    </div>
+                    <div>
+                        <label>Number of Total Revisions:   </label><label id="individualArticleTotalNumberRevisions"></label>
+                    </div>
+                    <div>
+                        <label>Top Five Reguler Users:   </label><label id="individualTopFiveUsers"></label>
+                    </div>
+
+
+                    <div id="individualAnalysisButtons">
+                        <button type="button" class="btn btn-dark" id="ButtonIndividualBar1Chart" >Revisions distributed by year and user type</button>
+                        <button type="button" class="btn btn-dark" id="ButtonIndividualPie2Chart" >Revisions distribution based on user type</button>
+                        <button type="button" class="btn btn-dark" id="ButtonIndividualBar3Chart" >Revisions distributed by year made by top 5 regular users</button>
+                    </div>
+
+<!--                    <div id="yearFilter"><label>From</label><input type = 'number' id="yearStart"><label>To</label><input type ='number' id="yearEnd"></div></div>-->
+
+                    <div id="individualBarChart1"></div>
+                    <div id="individualPieChart2"></div>
+                    <div id="individualBarChartButtons">
+
+                    </div>
+
+                    <div id="individualBarChart3"></div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+<!-- Function 3 .................................................................  -->
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button id="authorAnalysis" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Function show in Author Analytics: (Author Analysis)
+                    </button>
+                </h2>
+            </div>
+            <!--Author Analysis-->
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+
+                    <div class="border border-secondary" id="AuthorAnalysis1">
+                        <h6>please enter an author's name</h6>
+                        <input id="authorName" >
+                        <datalist id="userlist"></datalist>
+                        <!--                        <input id="authorName">-->
+                        <button id="userButton">submit</button>
+                    </div>
+
+                    <div class="border border-secondary" id="AuthorAnalysis2">
+
+                        <p id="authortable">articles changed by this author</p>
+
+                        <table id="articleByThisAuthor" class="author"></table>
+
+
+                        <p id="selcetedTitle"></p>
+                        <button id="checkMoreInfo">check more information</button>
+                        <div id="articleByTitleAndName" overflow="scroll"></div>
+
+
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+</body>
+</html>

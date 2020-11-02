@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Login Form with Avatar Image</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+<!--    js -->
+    <script type="text/javascript" src="/js/login.js"></script>
+
+</head>
+<body>
+<div class="signUp-form login">
+    <form action="/loginSubmit" method="post">
+        <div class="avatar">
+            <img src="/img/login.png" alt="login">
+        </div>
+        <h2 class="text-center">Member Login</h2>
+        <div class="form-group">
+            <input id = "email" type="text" class="form-control" name="email" placeholder="email" required="required">
+        </div>
+        <div class="form-group">
+            <input id = "password" type="password" class="form-control" name="password" placeholder="Password" required="required">
+            <% if (password_error) {%>
+            <label id="password_error" class="alertColour">Wrong password!</label>
+            <% } %>
+
+            <% if (email_not_exist) {%>
+                <label id="email_not_exist" class="alertColour">Email not found!</label>
+            <% } %>
+        </div>
+
+<!--        Reset button-->
+        <button class="btn btn-primary btn-lg btn-block" type="reset" value="Reset">Reset</button>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+        </div>
+
+    </form>
+    <p class="text-center small">Don't have an account? <a href="/signUp" id = "signup">Sign up here!</a></p>
+    <p class="text-center small">Forget your password?  <a href="/restPassword" id = "restPassword">Reset here!</a></p>
+
+</div>
+
+</body>
+</html>
